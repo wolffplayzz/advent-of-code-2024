@@ -4,12 +4,13 @@ import java.util.Collections;
 import java.util.Scanner;
 
 
-public class Day01{
+public class Day01 extends Template{
 
-    public static void main (String [] args){
-        
-        ArrayList<Integer> list1 = new ArrayList<>();
-        ArrayList<Integer> list2 = new ArrayList<>();
+    private ArrayList<Integer> list1 = new ArrayList<>();
+    private ArrayList<Integer> list2 = new ArrayList<>();
+    
+    @Override
+    protected void readFile() {
         try{
             Scanner sc = new Scanner(new File("./day01.txt"));
             String[] temp;
@@ -18,19 +19,23 @@ public class Day01{
                 line = sc.nextLine();
                 if (line.length() != 0){ //if the line is empty it will cause NumberFormatException
                     temp = line.split("   ");
-                    list1.add(Integer.valueOf(temp[0]));
-                    list2.add(Integer.valueOf(temp[1]));
+                    this.list1.add(Integer.valueOf(temp[0]));
+                    this.list2.add(Integer.valueOf(temp[1]));
                 }
             }sc.close();
         }catch(Exception e){
             e.printStackTrace(); //just log it for now
         }
-        Collections.sort(list1);
-        Collections.sort(list2);        
+    }
+
+    @Override
+    protected String solvePart1() {
+        Collections.sort(this.list1);
+        Collections.sort(this.list2);        
         int distanceTotal = 0;
 
-        for (int i = 0; i < list1.size(); i++){
-            int temp = list1.get(i) - list2.get(i);
+        for (int i = 0; i < this.list1.size(); i++){
+            int temp = this.list1.get(i) - this.list2.get(i);
             if (temp < 0){
                 distanceTotal-= temp;
             }
@@ -39,21 +44,23 @@ public class Day01{
             }
         }
 
-        System.out.println(distanceTotal);
+        return "" + distanceTotal;
+    }
 
-        //part 2 
+    @Override
+    protected String solvePart2() {
         int end = 0;
-        for (int i = 0; i < list1.size(); i++){
-            int toTest = list1.get(i);
+        for (int i = 0; i < this.list1.size(); i++){
+            int toTest = this.list1.get(i);
             int counter = 0;
 
-            for (int j = 0; j < list2.size(); j++){
-                if (toTest == list2.get(j)){
+            for (int j = 0; j < this.list2.size(); j++){
+                if (toTest == this.list2.get(j)){
                     counter++;
                 }
             }
             end += toTest * counter;
         }
-        System.out.println(end);
+        return "" + end;
     }
 }
