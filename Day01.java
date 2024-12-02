@@ -11,7 +11,7 @@ public class Day01{
         ArrayList<Integer> list1 = new ArrayList<>();
         ArrayList<Integer> list2 = new ArrayList<>();
         try{
-            Scanner sc = new Scanner(new File("/home/till-heinrichs/Documents/Projects/advent-of-code-2024/day01.txt"));
+            Scanner sc = new Scanner(new File("./day01.txt"));
             String[] temp;
             String line;
             while(sc.hasNextLine()){

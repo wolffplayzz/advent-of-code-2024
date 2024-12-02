@@ -10,7 +10,7 @@ public class Day02 {
         int safeRows = 0;
 
         try {
-            Scanner sc = new Scanner(new File("/home/till-heinrichs/Documents/Projects/advent-of-code-2024/day02.txt"));
+            Scanner sc = new Scanner(new File("./day02.txt"));
             while (sc.hasNextLine()) {
                 String line = sc.nextLine().trim();
                 if (!line.isEmpty()) {
