@@ -27,26 +27,48 @@ public class Day02 {
             e.printStackTrace();
         }
 
-        
         for (int[] row : readFile) {
 
-            boolean isValid = true; 
-            boolean isIncreasing = row[0] < row[1];
-
-            for (int j = 1; j < row.length; j++) {
-                int diff = row[j] - row[j - 1];
-                if ((isIncreasing && (diff < 1 || diff > 3)) ||
-                    (!isIncreasing && (diff > -1 || diff < -3))) {
-                    isValid = false; 
-                    break;
+            if (isSafe(row)) {
+                safeRows++; 
+            } else {
+                boolean canBeMadeSafe = false;
+                for (int i = 0; i < row.length; i++) {
+                    int[] modifiedRow = removeElement(row, i);
+                    if (isSafe(modifiedRow)) {
+                        canBeMadeSafe = true;
+                        break;
+                    }
                 }
-            }
-
-            if (isValid) {
-                safeRows++;
+                if (canBeMadeSafe) {
+                    safeRows++;
+                }
             }
         }
 
         System.out.println(safeRows);
+    }
+
+    private static boolean isSafe(int[] row) {
+        boolean isIncreasing = row[0] < row[1];
+        for (int j = 1; j < row.length; j++) {
+            int diff = row[j] - row[j - 1];
+            if ((isIncreasing && (diff < 1 || diff > 3)) ||
+                (!isIncreasing && (diff > -1 || diff < -3))) {
+                return false; 
+            }
+        }
+        return true; 
+    }
+
+    private static int[] removeElement(int[] array, int index) {
+        int[] result = new int[array.length - 1];
+        int pos = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i != index) {
+                result[pos++] = array[i];
+            }
+        }
+        return result;
     }
 }
