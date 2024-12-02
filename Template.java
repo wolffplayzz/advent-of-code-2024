@@ -1,4 +1,3 @@
-
 public abstract class Template {
 
     protected abstract void readFile();

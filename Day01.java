@@ -2,8 +2,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
-
 public class Day01 extends Template{
 
     private ArrayList<Integer> list1 = new ArrayList<>();
