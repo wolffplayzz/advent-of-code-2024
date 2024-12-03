@@ -45,8 +45,8 @@ public class Day03 extends Template {
             }
         }
 
-        for (int i = 0; i < numbers.length; i++) {
-            mult += numbers[i][0] * numbers[i][1];
+        for (int[] number : numbers) {
+            mult += number[0] * number[1];
         }
 
         return "" + mult;
@@ -71,8 +71,8 @@ public class Day03 extends Template {
             }
         }
 
-        for (int i = 0; i < numbers.length; i++) {
-            mult += numbers[i][0] * numbers[i][1];
+        for (int[] number : numbers) {
+            mult += number[0] * number[1];
         }
 
         return "" + mult;

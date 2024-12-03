@@ -8,6 +8,7 @@ public class Day02 extends Template {
     private ArrayList<int[]> readFile = new ArrayList<>();
 
     @Override
+    @SuppressWarnings("ConvertToTryWithResources")
     protected void readFile() {
         try {
             Scanner sc = new Scanner(new File("./day02.txt"));
