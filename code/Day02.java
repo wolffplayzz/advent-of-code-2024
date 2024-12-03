@@ -11,7 +11,7 @@ public class Day02 extends Template {
     @SuppressWarnings("ConvertToTryWithResources")
     protected void readFile() {
         try {
-            Scanner sc = new Scanner(new File("./day02.txt"));
+            Scanner sc = new Scanner(new File("data/day02.txt"));
             while (sc.hasNextLine()) {
                 String line = sc.nextLine().trim();
                 if (!line.isEmpty()) {

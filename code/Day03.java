@@ -12,7 +12,7 @@ public class Day03 extends Template {
 
         String regex = "\\b(mul\\(\\d+\\,\\d+\\)|do\\(\\)|don't\\(\\))";
 
-        try (BufferedReader br = new BufferedReader(new FileReader("./day03.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/day03.txt"))) {
             String line;
             Pattern pattern = Pattern.compile(regex);
 

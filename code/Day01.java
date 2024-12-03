@@ -10,7 +10,7 @@ public class Day01 extends Template{
     @Override
     protected void readFile() {
         try{
-            Scanner sc = new Scanner(new File("./day01.txt"));
+            Scanner sc = new Scanner(new File("data/day01.txt"));
             String[] temp;
             String line;
             while(sc.hasNextLine()){
