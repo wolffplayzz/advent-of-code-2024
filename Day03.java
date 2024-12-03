@@ -9,7 +9,7 @@ public class Day03 extends Template {
 
     @Override
     protected void readFile() {
-        // Regex to match all instructions of interest: mul(int,int), do(), don't()
+
         String regex = "\\b(mul\\(\\d+\\,\\d+\\)|do\\(\\)|don't\\(\\))";
 
         try (BufferedReader br = new BufferedReader(new FileReader("./day03.txt"))) {
@@ -18,8 +18,6 @@ public class Day03 extends Template {
 
             while ((line = br.readLine()) != null) {
                 Matcher matcher = pattern.matcher(line);
-
-                // Find and add all matches
                 while (matcher.find()) {
                     this.readFiltered.add(matcher.group());
                 }
