@@ -94,7 +94,25 @@ public class Day04 extends Template {
 
     @Override
     protected String solvePart2() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
+        int xMASCount = 0;
+
+        for (int i = 0; i < this.readFile.size(); i++) {
+
+            for (int j = 0; j < this.readFile.get(i).length; j++) {
+                if (this.readFile.get(i)[j] == 'A') {
+                    try {
+                        if (this.readFile.get(i - 1)[j - 1] == 'M' && this.readFile.get(i + 1)[j + 1] == 'S' || this.readFile.get(i + 1)[j + 1] == 'M' && this.readFile.get(i - 1)[j - 1] == 'S') {
+                            if (this.readFile.get(i + 1)[j - 1] == 'M' && this.readFile.get(i - 1)[j + 1] == 'S' || this.readFile.get(i - 1)[j + 1] == 'M' && this.readFile.get(i + 1)[j - 1] == 'S') {
+                                xMASCount++;
+                            }
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+            }
+
+        }
+        return "" + xMASCount;
+    }
 }
