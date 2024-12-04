@@ -8,6 +8,9 @@ public class Main{
         (new Day02()).solve();
         
         System.out.println("\nDay 03:");
-        (new Day03()).solve();        
+        (new Day03()).solve();       
+
+        System.out.println("\nDay 04:"); 
+        (new Day04()).solve();
     }
 }
