@@ -2,7 +2,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class Day05 extends Template {
 
@@ -12,10 +12,10 @@ public class Day05 extends Template {
     @Override
     protected void readFile() {
 
-        ArrayList<Integer> column1 = new ArrayList<>();
-        ArrayList<Integer> column2 = new ArrayList<>();
+        List<Integer> column1 = new ArrayList<>();
+        List<Integer> column2 = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("/data/day05.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("data/day05.txt"))) {
             String line;
             boolean isLowerPart = false;
 
@@ -26,11 +26,14 @@ public class Day05 extends Template {
                 }
                 if (!isLowerPart) {
                     String[] parts = line.split("\\|");
-                    column1.add(Integer.valueOf(parts[0]));
-                    column2.add(Integer.valueOf(parts[1]));
+                    column1.add(Integer.parseInt(parts[0]));
+                    column2.add(Integer.parseInt(parts[1]));
                 } else {
                     String[] parts = line.split(",");
-                    int[] array = Arrays.stream(parts).mapToInt(Integer::parseInt).toArray();
+                    int[] array = new int[parts.length];
+                    for (int i = 0; i < parts.length; i++) {
+                        array[i] = Integer.parseInt(parts[i]);
+                    }
                     this.part2.add(array);
                 }
             }
@@ -47,15 +50,46 @@ public class Day05 extends Template {
 
     @Override
     protected String solvePart1() {
-        
         int middlePageNumberOfOrdered = 0;
+        int[] col1 = this.part1.get(0);
+        int[] col2 = this.part1.get(1);
+        int[] visited = new int[this.part2.size()];
+        int i = 0;
 
-        for (int i = 0; i < this.part2.size(); i++){
-            
-            
+        for (int[] line : this.part2) {
+            boolean lineMatched = false;
+            for (int j = 0; j < col1.length; j++) {
+                int e1 = col1[j];
+                int e2 = col2[j];
+                int posE1 = -1, posE2 = -1;
+
+                for (int k = 0; k < line.length; k++) {
+                    if (line[k] == e1) {
+                        posE1 = k;
+                    }
+                    if (line[k] == e2) {
+                        posE2 = k;
+                    }
+                    if (posE1 != -1 && posE2 != -1) {
+                        break;
+                    }
+                }
+
+                if (posE1 != -1 && posE2 != -1 && posE1 < posE2) {
+                    lineMatched = true;
+                    break;
+                }
+            }
+
+            if (lineMatched && visited[i] == 0) {
+                middlePageNumberOfOrdered = middlePageNumberOfOrdered + line[(line.length / 2)];
+            }
+            visited[i] = i;
+
+            i++;
         }
 
-        return "" + middlePageNumberOfOrdered;
+        return String.valueOf(middlePageNumberOfOrdered);
     }
 
     @Override
