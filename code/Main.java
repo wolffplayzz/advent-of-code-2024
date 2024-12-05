@@ -12,5 +12,8 @@ public class Main{
 
         System.out.println("\nDay 04:"); 
         (new Day04()).solve();
+
+        System.out.println("\nDay 05:");
+        (new Day05()).solve();
     }
 }
