@@ -50,46 +50,34 @@ public class Day05 extends Template {
 
     @Override
     protected String solvePart1() {
-        int middlePageNumberOfOrdered = 0;
+        int totalMiddlePageNumber = 0;
         int[] col1 = this.part1.get(0);
         int[] col2 = this.part1.get(1);
-        int[] visited = new int[this.part2.size()];
-        int i = 0;
 
-        for (int[] line : this.part2) {
-            boolean lineMatched = false;
-            for (int j = 0; j < col1.length; j++) {
-                int e1 = col1[j];
-                int e2 = col2[j];
-                int posE1 = -1, posE2 = -1;
-
-                for (int k = 0; k < line.length; k++) {
-                    if (line[k] == e1) {
-                        posE1 = k;
-                    }
-                    if (line[k] == e2) {
-                        posE2 = k;
-                    }
-                    if (posE1 != -1 && posE2 != -1) {
-                        break;
-                    }
-                }
-
-                if (posE1 != -1 && posE2 != -1 && posE1 < posE2) {
-                    lineMatched = true;
+        for (int[] update : this.part2) {
+            boolean isOrdered = true;
+            for (int k = 0; k < col1.length; k++) {
+                int pos1 = findPosition(update, col1[k]);
+                int pos2 = findPosition(update, col2[k]);
+                if (pos1 != -1 && pos2 != -1 && pos1 > pos2) {
+                    isOrdered = false;
                     break;
                 }
             }
-
-            if (lineMatched && visited[i] == 0) {
-                middlePageNumberOfOrdered = middlePageNumberOfOrdered + line[(line.length / 2)];
+            if (isOrdered) {
+                totalMiddlePageNumber += update[update.length / 2];
             }
-            visited[i] = i;
-
-            i++;
         }
+        return String.valueOf(totalMiddlePageNumber);
+    }
 
-        return String.valueOf(middlePageNumberOfOrdered);
+    private int findPosition(int[] array, int value) {
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == value) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
